@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValhallaManagement.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValhallaManagement.WebAPI", "ValhallaManagement.WebAPI\ValhallaManagement.WebAPI.csproj", "{C65B04D8-5C16-416E-913E-CA6484EF3A27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValhallaManagement.Blazor", "ValhallaManagement.Blazor\ValhallaManagement.Blazor.csproj", "{45AB8097-6975-4473-A17C-7593A6FDEA7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C65B04D8-5C16-416E-913E-CA6484EF3A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65B04D8-5C16-416E-913E-CA6484EF3A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65B04D8-5C16-416E-913E-CA6484EF3A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45AB8097-6975-4473-A17C-7593A6FDEA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45AB8097-6975-4473-A17C-7593A6FDEA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45AB8097-6975-4473-A17C-7593A6FDEA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45AB8097-6975-4473-A17C-7593A6FDEA7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
