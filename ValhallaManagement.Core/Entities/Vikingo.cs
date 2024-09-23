@@ -11,13 +11,13 @@ namespace ValhallaManagement.Core.Entities
     public class Vikingo
     {
         [Key]
-        public int Id { get; private set; }
-        public string Nombre { get; private set; }
-        public int BatallasGanadas { get; private set; }
-        public Armas ArmaFavorita { get; private set; }
-        public NivelHonor NivelHonor { get; private set; }
-        public CausaMuerteGloriosa CausaMuerteGloriosa { get; private set; }
-        public int ValhallaPoints { get; private set; }
-        public ClasificacionVikingo Clasificacion { get; private set; }
+        public int Id { get; set; }
+        public string Nombre { get;  set; }
+        public int BatallasGanadas { get;  set; }
+        public Armas ArmaFavorita { get;  set; }
+        public NivelHonor NivelHonor { get;  set; }
+        public CausaMuerteGloriosa CausaMuerteGloriosa { get;  set; }
+        public int ValhallaPoints { get;  set; }
+        public ClasificacionVikingo Clasificacion { get;  set; }
     }
 }
