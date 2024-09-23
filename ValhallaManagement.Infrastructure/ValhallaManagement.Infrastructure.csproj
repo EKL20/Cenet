@@ -11,4 +11,12 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ValhallaManagement.Core\ValhallaManagement.Core.csproj" />
+  </ItemGroup>
+
 </Project>

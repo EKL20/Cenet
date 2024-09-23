@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="UseCase\" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ValhallaManagement.Core\ValhallaManagement.Core.csproj" />
   </ItemGroup>
 
 </Project>
