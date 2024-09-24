@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValhallaManagement.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValhallaManagement.Tests", "ValhallaManagement.Tests\ValhallaManagement.Tests.csproj", "{2277CCA3-DF4C-4D1D-ABA3-A2AD5447E995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValhallaManagement.WebAPI", "ValhallaManagement.WebAPI\ValhallaManagement.WebAPI.csproj", "{C65B04D8-5C16-416E-913E-CA6484EF3A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValhallaManagement.WebAPI", "ValhallaManagement.WebAPI\ValhallaManagement.WebAPI.csproj", "{C65B04D8-5C16-416E-913E-CA6484EF3A27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValhallaManagement.Blazor", "ValhallaManagement.Blazor\ValhallaManagement.Blazor.csproj", "{45AB8097-6975-4473-A17C-7593A6FDEA7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValhallaManagement.Blazor", "ValhallaManagement.Blazor\ValhallaManagement.Blazor.csproj", "{45AB8097-6975-4473-A17C-7593A6FDEA7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
