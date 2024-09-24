@@ -1,0 +1,61 @@
+﻿@page "/view-vikingo"
+@using ValhallaManagement.Blazor.Services
+@using ValhallaManagement.Blazor.Models
+@inject IVikingoService VikingoService
+
+<h3>Lista de Vikingos</h3>
+
+@if (vikingos == null)
+{
+    <p>Cargando Vikingos...</p>
+}
+else if (vikingos.Count == 0)
+{
+    <p>No hay vikingos disponibles.</p>
+}
+else
+{
+    <div class="list-group">
+        @foreach (var vikingo in vikingos)
+        {
+            <button class="list-group-item list-group-item-action"
+                    @onclick="() => SelectVikingo(vikingo.Id)">
+                @vikingo.Nombre - Batallas Ganadas: @vikingo.BatallasGanadas
+            </button>
+        }
+    </div>
+}
+
+@if (selectedVikingo != null)
+{
+    <h3>Detalles del Vikingo</h3>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@selectedVikingo.Nombre</h5>
+            <p class="card-text">
+                <strong>Batallas Ganadas:</strong> @selectedVikingo.BatallasGanadas<br />
+                <strong>Arma Favorita:</strong> @selectedVikingo.ArmaFavorita<br />
+                <strong>Nivel de Honor:</strong> @selectedVikingo.NivelHonor<br />
+                <strong>Causa de Muerte Gloriosa:</strong> @selectedVikingo.CausaMuerteGloriosa<br />
+                <strong>Puntos de Valhalla:</strong> @selectedVikingo.ValhallaPoints<br />
+                <strong>Clasificación:</strong> @selectedVikingo.Clasificacion
+            </p>
+        </div>
+    </div>
+}
+
+@code {
+    private List<VikingoFormModel> vikingos;
+    private VikingoFormModel selectedVikingo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        vikingos = await VikingoService.GetAllVikingos();
+    }
+
+    private async Task SelectVikingo(int id)
+    {
+        selectedVikingo = await VikingoService.GetVikingoById(id);
+    }
+}

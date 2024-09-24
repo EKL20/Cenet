@@ -1,0 +1,112 @@
+﻿@page "/edit-vikingo/{id:int}"
+@using Microsoft.AspNetCore.Components.Forms
+@using ValhallaManagement.Blazor.Services
+@using ValhallaManagement.Blazor.Models
+@inject IVikingoService VikingoService
+@inject NavigationManager NavigationManager
+@code {
+    [Parameter] public int id { get; set; }
+
+    private VikingoFormModel vikingoFormModel = new VikingoFormModel();
+    private bool isLoaded = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var vikingo = await VikingoService.GetVikingoById(id);
+        if (vikingo != null)
+        {
+            vikingoFormModel = new VikingoFormModel
+            {
+                Nombre = vikingo.Nombre,
+                BatallasGanadas = vikingo.BatallasGanadas,
+                ArmaFavorita = vikingo.ArmaFavorita,
+                NivelHonor = vikingo.NivelHonor,
+                CausaMuerteGloriosa = vikingo.CausaMuerteGloriosa,
+                ValhallaPoints = vikingo.ValhallaPoints,
+                Clasificacion = vikingo.Clasificacion
+            };
+            isLoaded = true;
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/vikingolist");
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await VikingoService.UpdateVikingo(id, vikingoFormModel);
+        NavigationManager.NavigateTo("/vikingolist");
+    }
+}
+
+@if (!isLoaded)
+{
+    <p>Cargando datos del vikingo...</p>
+}
+else
+{
+    <h3>Editar Vikingo</h3>
+
+    <EditForm Model="@vikingoFormModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <InputText id="nombre" class="form-control" @bind-Value="vikingoFormModel.Nombre" />
+        </div>
+
+        <div class="form-group">
+            <label for="batallasGanadas">Batallas Ganadas:</label>
+            <InputNumber id="batallasGanadas" class="form-control" @bind-Value="vikingoFormModel.BatallasGanadas" />
+        </div>
+
+        <div class="form-group">
+            <label for="armaFavorita">Arma Favorita:</label>
+            <InputSelect id="armaFavorita" class="form-control" @bind-Value="vikingoFormModel.ArmaFavorita">
+                @foreach (var arma in Enum.GetValues(typeof(Armas)))
+                {
+                    <option value="@arma">@arma</option>
+                }
+            </InputSelect>
+        </div>
+
+        <div class="form-group">
+            <label for="nivelHonor">Nivel de Honor:</label>
+            <InputSelect id="nivelHonor" class="form-control" @bind-Value="vikingoFormModel.NivelHonor">
+                @foreach (var nivel in Enum.GetValues(typeof(NivelHonor)))
+                {
+                    <option value="@nivel">@nivel</option>
+                }
+            </InputSelect>
+        </div>
+
+        <div class="form-group">
+            <label for="causaMuerte">Causa de Muerte Gloriosa:</label>
+            <InputSelect id="causaMuerte" class="form-control" @bind-Value="vikingoFormModel.CausaMuerteGloriosa">
+                @foreach (var causa in Enum.GetValues(typeof(CausaMuerteGloriosa)))
+                {
+                    <option value="@causa">@causa</option>
+                }
+            </InputSelect>
+        </div>
+
+        <div class="form-group">
+            <label for="valhallaPoints">Puntos de Valhalla:</label>
+            <InputNumber id="valhallaPoints" class="form-control" @bind-Value="vikingoFormModel.ValhallaPoints" />
+        </div>
+
+        <div class="form-group">
+            <label for="clasificacion">Clasificación:</label>
+            <InputSelect id="clasificacion" class="form-control" @bind-Value="vikingoFormModel.Clasificacion">
+                @foreach (var clasificacion in Enum.GetValues(typeof(ClasificacionVikingo)))
+                {
+                    <option value="@clasificacion">@clasificacion</option>
+                }
+            </InputSelect>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </EditForm>
+}

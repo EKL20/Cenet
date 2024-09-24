@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+
+<h3>Bienvenido a Valhalla Management</h3>
+
+<p>Gestión de Vikingos y sus hazañas en Valhalla.</p>
+
+<div class="list-group">
+    <button class="list-group-item list-group-item-action" @onclick="NavigateToCreate">
+        Crear un nuevo Vikingo
+    </button>
+    <button class="list-group-item list-group-item-action" @onclick="NavigateToList">
+        Ver todos los Vikingos
+    </button>
+    <button class="list-group-item list-group-item-action" @onclick="NavigateToEdit">
+        Editar un Vikingo
+    </button>
+    <button class="list-group-item list-group-item-action" @onclick="NavigateToView">
+        Ver detalles de un Vikingo
+    </button>
+</div>
+
+@code {
+    private void NavigateToCreate()
+    {
+        NavigationManager.NavigateTo("/create-vikingo");
+    }
+
+    private void NavigateToList()
+    {
+        NavigationManager.NavigateTo("/view-vikingo");
+    }
+
+    private void NavigateToEdit()
+    {
+        NavigationManager.NavigateTo("/edit-vikingo");
+    }
+
+    private void NavigateToView()
+    {
+        NavigationManager.NavigateTo("/view-vikingo");
+    }
+}

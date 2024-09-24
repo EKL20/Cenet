@@ -1,0 +1,31 @@
+﻿@using ValhallaManagement.Blazor.Models
+
+@if (Vikingo != null)
+{
+    <div class="card">
+        <div class="card-header">
+            Vikingo: @Vikingo.Nombre
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Detalles del Guerrero</h5>
+            <p class="card-text">Batallas Ganadas: @Vikingo.BatallasGanadas</p>
+            <p class="card-text">Arma Favorita: @Vikingo.ArmaFavorita.ToString()</p>
+            <p class="card-text">Nivel de Honor: @Vikingo.NivelHonor.ToString()</p>
+            <p class="card-text">Causa de Muerte Gloriosa: @Vikingo.CausaMuerteGloriosa.ToString()</p>
+            <p class="card-text">Puntos de Valhalla: @Vikingo.ValhallaPoints</p>
+            <p class="card-text">Clasificación: @Vikingo.Clasificacion.ToString()</p>
+        </div>
+        <div class="card-footer text-muted">
+            Vikingo ID: @Vikingo.Id
+        </div>
+    </div>
+}
+else
+{
+    <p>No hay información del vikingo disponible.</p>
+}
+
+@code {
+    [Parameter]
+    public VikingoFormModel Vikingo { get; set; }
+}
