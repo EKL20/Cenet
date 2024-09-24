@@ -1,0 +1,101 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Valhalla Management</PageTitle>
+
+<div class="layout-container">
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="/" class="brand-logo">
+                    <img src="/images/logo.png" alt="Logo" class="logo" />
+                </a>
+                <span class="app-title">Valhalla Management</span>
+            </div>
+            <div class="navbar-links">
+                <NavLink href="/" class="nav-item" Match="NavLinkMatch.All">Inicio</NavLink>
+                <NavLink href="/vikingos" class="nav-item" Match="NavLinkMatch.All">Vikingos</NavLink>
+                <NavLink href="/about" class="nav-item">Acerca de</NavLink>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><NavLink href="/vikingoform" class="menu-item">Crear Vikingo</NavLink></li>
+                <li><NavLink href="/vikingolist" class="menu-item">Lista de Vikingos</NavLink></li>
+                <li><NavLink href="/settings" class="menu-item">Configuración</NavLink></li>
+            </ul>
+        </aside>
+
+        <main>
+            <div class="content-wrapper">
+                <!-- Mostrar mensaje de carga -->
+                @if (IsLoading)
+                {
+                    <div class="loading-spinner">
+                        <span>Cargando...</span>
+                    </div>
+                }
+
+                <!-- Mostrar mensaje de éxito -->
+                @if (SuccessMessage != null)
+                {
+                    <div class="alert alert-success">
+                        @SuccessMessage
+                        <button @onclick="ClearMessages" class="close-button">x</button>
+                    </div>
+                }
+
+                <!-- Mostrar mensaje de error -->
+                @if (ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @ErrorMessage
+                        <button @onclick="ClearMessages" class="close-button">x</button>
+                    </div>
+                }
+
+                @Body
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Valhalla Management - Todos los derechos reservados.</p>
+    </footer>
+</div>
+
+@code {
+    // Estados comunes en la página
+    private bool IsLoading { get; set; }
+    private string SuccessMessage { get; set; }
+    private string ErrorMessage { get; set; }
+
+    // Método para simular una carga de datos
+    protected override async Task OnInitializedAsync()
+    {
+        IsLoading = true;
+        try
+        {
+            // Simula la carga de datos (puede ser una llamada a un servicio)
+            await Task.Delay(1000);
+            SuccessMessage = "Datos cargados con éxito.";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error al cargar los datos: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    // Limpiar mensajes de éxito/error
+    private void ClearMessages()
+    {
+        SuccessMessage = null;
+        ErrorMessage = null;
+    }
+}
