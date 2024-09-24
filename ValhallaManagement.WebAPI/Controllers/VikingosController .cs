@@ -11,21 +11,32 @@ namespace ValhallaManagement.WebAPI.Controllers
     public class VikingosController : ControllerBase
     {
         private readonly CrearVikingoUseCase _crearVikingoUseCase;
+        private readonly ObtenerVikingosUseCase _obtenerVikingosUseCase;
         private readonly ObtenerVikingoPorIdUseCase _obtenerVikingoPorIdUseCase;
         private readonly ActualizarVikingoUseCase _actualizarVikingoUseCase;
         private readonly EliminarVikingoUseCase _eliminarVikingoUseCase;
 
         public VikingosController(CrearVikingoUseCase crearVikingoUseCase,
+            ObtenerVikingosUseCase obtenerVikingosUseCase,
             ObtenerVikingoPorIdUseCase obtenerVikingoPorIdUseCase,
             ActualizarVikingoUseCase actualizarVikingoUseCase,
             EliminarVikingoUseCase eliminarVikingoUseCase)
         {
             _crearVikingoUseCase = crearVikingoUseCase;
+            _obtenerVikingosUseCase = obtenerVikingosUseCase;
             _obtenerVikingoPorIdUseCase = obtenerVikingoPorIdUseCase;
             _actualizarVikingoUseCase = actualizarVikingoUseCase;
             _eliminarVikingoUseCase = eliminarVikingoUseCase;
         }
 
+
+        // GET: api/vikingos
+        [HttpGet]
+        public async Task<IActionResult> ObtenerVikingos()
+        {
+            var vikingos = await _obtenerVikingosUseCase.Ejecutar(); // Método que retorna la lista de vikingos
+            return Ok(vikingos);
+        }
 
         // POST: Crear nuevo vikingo
         [HttpPost]
